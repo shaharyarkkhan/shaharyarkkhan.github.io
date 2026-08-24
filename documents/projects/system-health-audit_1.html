@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Health Audit | Shaharyar Khan</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+  <h1>Cross-Platform System Health & Security Audit</h1>
+  <p><a href="../index.html">&larr; Back to Portfolio</a></p>
+</header>
+
+<main style="max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6;">
+
+  <h2>Overview</h2>
+  <p>
+    A PowerShell script that checks a machine's health and basic security posture —
+    the kind of checks an IT support technician runs when diagnosing "why is this
+    computer slow" or "is this machine configured securely." It generates a clean,
+    colour-coded HTML report so results are easy to read at a glance.
+  </p>
+  <p>
+    Built to run on <strong>both macOS and Windows</strong> using PowerShell 7,
+    detecting the operating system at runtime and adapting each check accordingly.
+  </p>
+
+  <h2>What it checks</h2>
+  <ul>
+    <li>Disk space (flags anything under 15% free)</li>
+    <li>Memory usage</li>
+    <li>Admin/root-level account membership (security check)</li>
+    <li>Firewall status</li>
+    <li>Last OS update history</li>
+    <li>Battery health — cycle count and condition (macOS laptops)</li>
+  </ul>
+
+  <h2>Tech used</h2>
+  <p>PowerShell 7 (cross-platform), native OS command-line tools (<code>vm_stat</code>,
+     <code>dscl</code>, <code>system_profiler</code>, <code>Get-CimInstance</code>),
+     HTML/CSS for the generated report.</p>
+
+  <h2>Sample output</h2>
+  <p>
+    <a href="HealthReport_example.html">View a live example report &rarr;</a>
+  </p>
+  <!-- Replace this with an actual <img> tag once you've added your screenshot -->
+  <!-- <img src="screenshots/03-report-output.png" alt="Health report output" style="max-width:100%; border:1px solid #ccc;"> -->
+
+  <h2>How it works</h2>
+  <p>
+    The script uses PowerShell 7's built-in <code>$IsMacOS</code> / <code>$IsWindows</code>
+    variables to branch each check by operating system, since Windows and macOS expose
+    system information completely differently. For example, memory usage on Windows comes
+    from <code>Get-CimInstance Win32_OperatingSystem</code>, while on macOS it's parsed from
+    the <code>vm_stat</code> command's page-based output.
+  </p>
+  <p>
+    Each check result is stored as a structured object (category, detail, status), then
+    looped over at the end to build a single colour-coded HTML report — green for OK,
+    yellow for warning, red for fail.
+  </p>
+
+  <h2>Challenges & what I learned</h2>
+  <ul>
+    <li>
+      Hit a real install error part-way through — Homebrew recently migrated PowerShell
+      from a "cask" to a "formula," so <code>brew install --cask powershell</code> failed
+      with "No Cask with this name exists." Fixed by switching to
+      <code>brew install --formula powershell</code>. A small but real example of the kind
+      of troubleshooting that comes up constantly in IT support work — tools and package
+      names change, and knowing how to search the error and adapt is the actual skill.
+    </li>
+    <li>
+      Learned that Windows and macOS expose almost every piece of system information
+      differently (disk, memory, admin groups, firewall), which meant writing OS-aware
+      logic rather than one-size-fits-all commands.
+    </li>
+    <li>
+      Extended the script myself to add a battery health check (cycle count + condition),
+      since that's a genuinely useful diagnostic for laptop hardware that isn't covered
+      by the original checks.
+    </li>
+  </ul>
+
+  <h2>Development note</h2>
+  <p>
+    This script was built with AI-assisted development (Claude), then run, debugged,
+    and adapted for cross-platform compatibility by me. I extended it with an additional
+    battery health check as part of learning the underlying PowerShell concepts.
+  </p>
+
+  <h2>Get the code</h2>
+  <p><a href="SystemHealthAudit.ps1">Download the script (.ps1) &rarr;</a></p>
+
+</main>
+
+<footer style="text-align:center; padding: 20px;">
+  &copy; 2026 Shaharyar Khan
+</footer>
+
+</body>
+</html>
