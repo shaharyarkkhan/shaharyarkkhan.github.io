@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: #f7f8fa;
+    color: #172033;
+}
+
+header {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+}
+
+nav {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #172033;
+}
+
+main {
+    max-width: 1100px;
+    margin: auto;
+}
+
+section {
+    padding: 80px 20px;
+}
+
+.hero {
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero h1 {
+    font-size: 56px;
+    max-width: 800px;
+    margin: 10px 0;
+}
+
+.hero p {
+    max-width: 700px;
+    font-size: 19px;
+}
+
+.eyebrow {
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.buttons {
+    margin-top: 25px;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 20px;
+    margin-right: 10px;
+    background: #172033;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.button.secondary {
+    background: white;
+    color: #172033;
+    border: 1px solid #172033;
+}
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.projects article {
+    background: white;
+    padding: 30px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+}
+
+.projects a {
+    text-decoration: none;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skills span {
+    background: white;
+    padding: 10px 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    background: white;
+}
+
+
+@media (max-width: 700px) {
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 0 8px;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .projects {
+        grid-template-columns: 1fr;
+    }
+
+}
